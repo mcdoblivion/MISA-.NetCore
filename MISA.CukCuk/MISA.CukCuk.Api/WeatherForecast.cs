@@ -1,6 +1,6 @@
 using System;
 
-namespace MISA.CukCuk
+namespace MISA.CukCuk.Api
 {
     public class WeatherForecast
     {
