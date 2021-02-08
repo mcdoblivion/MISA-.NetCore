@@ -6,26 +6,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using MISA.Common.Models;
 using MISA.Service;
+using MISA.Service.Interfaces;
 
 namespace MISA.CukCuk.Api.Controllers
 {
     [Route("api/v1/customer-groups")]
-    [ApiController]
-    public class CustomerGroupsController : ControllerBase
+    public class CustomerGroupsController : BaseController<CustomerGroup>
     {
-        /// <summary>
-        /// Lấy danh sách nhóm khách hàng
-        /// </summary>
-        /// <returns>Danh sách nhóm khách hàng</returns>
-        /// CreatedBy: DMCUONG (06/02/2021)
-        [HttpGet]
-        public IActionResult Get()
-        {
-            var customerService = new CustomerGroupService();
-            var serviceResult = customerService.GetCustomerGroups();
-            var customerGroups = serviceResult.Data as List<CustomerGroup>;
+        #region Constructor
 
-            return StatusCode(customerGroups.Count == 0 ? 204 : 200, serviceResult.Data);
+        public CustomerGroupsController(IBaseService<CustomerGroup> baseService) : base(baseService)
+        {
         }
+
+        #endregion Constructor
     }
 }

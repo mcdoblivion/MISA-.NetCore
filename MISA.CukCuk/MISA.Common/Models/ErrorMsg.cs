@@ -18,7 +18,7 @@ namespace MISA.Common.Models
         /// <summary>
         /// Thông báo cho người dùng
         /// </summary>
-        public string UserMsg { get; set; }
+        public List<string> UserMsg { get; set; } = new List<string>();
 
         /// <summary>
         /// Mã lỗi

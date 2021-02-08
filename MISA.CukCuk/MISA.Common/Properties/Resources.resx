@@ -126,4 +126,7 @@
   <data name="ErrorService_EmptyCustomerCode" xml:space="preserve">
     <value>Mã khách hàng không được để trống, vui lòng kiểm tra lại.</value>
   </data>
+  <data name="ErrorService_General" xml:space="preserve">
+    <value>Có lỗi xảy ra, vui lòng liên hệ MISA.</value>
+  </data>
 </root>

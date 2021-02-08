@@ -13,6 +13,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using MISA.Common.Models;
+using MISA.Common.Properties;
+using MISA.DataLayer.DbContexts;
+using MISA.DataLayer.Interfaces;
+using MISA.Service;
+using MISA.Service.Interfaces;
+using MISA.Service.Services;
 
 namespace MISA.CukCuk.Api
 {
@@ -29,10 +35,17 @@ namespace MISA.CukCuk.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MISA.CukCuk.Api", Version = "v1" });
-            });
+            services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "MISA.CukCuk.Api", Version = "v1" }));
+
+            // Cấu hình DI
+            services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
+            services.AddScoped<ICustomerService, CustomerService>();
+            //services.AddScoped<ICustomerService, CustomerServiceV2>();
+
+            services.AddScoped(typeof(IDbContext<>), typeof(DbContext<>));
+            //services.AddScoped(typeof(IDbContext<>), typeof(DbContextV2<>));
+            services.AddScoped<ICustomerDbContext, CustomerDbContext>();
+            //services.AddScoped<ICustomerDbContext, CustomerDbContextV2>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,8 +65,8 @@ namespace MISA.CukCuk.Api
                 var errorMsg = new ErrorMsg()
                 {
                     DevMsg = exception.Message,
-                    UserMsg = "Có lỗi xảy ra, vui lòng liên hệ MISA."
                 };
+                errorMsg.UserMsg.Add(Resources.ErrorService_General);
                 await context.Response.WriteAsJsonAsync(errorMsg);
             }));
 
@@ -61,10 +74,7 @@ namespace MISA.CukCuk.Api
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }
