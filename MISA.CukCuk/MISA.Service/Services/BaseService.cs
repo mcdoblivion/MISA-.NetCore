@@ -33,7 +33,7 @@ namespace MISA.Service.Services
         /// <summary>
         /// Lấy tất cả dữ liệu
         /// </summary>
-        /// <returns>Dữ liệu</returns>
+        /// <returns>ServiceResult</returns>
         public virtual ServiceResult GetData()
         {
             var serviceResult = new ServiceResult()

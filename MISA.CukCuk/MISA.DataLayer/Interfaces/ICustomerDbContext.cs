@@ -7,8 +7,18 @@ namespace MISA.DataLayer.Interfaces
 {
     public interface ICustomerDbContext : IDbContext<Customer>
     {
+        /// <summary>
+        /// Kiểm tra mã khách hàng đã tồn tại chưa
+        /// </summary>
+        /// <param name="customerCode">Mã khách hàng cần kiểm tra</param>
+        /// <returns>Mã khách hàng tìm được hoặc null</returns>
         string CheckCustomerCodeExist(string customerCode);
 
+        /// <summary>
+        /// Kiểm tra số điện thoại khách hàng đã tồn tại chưa
+        /// </summary>
+        /// <param name="phoneNumber">Số điện thoại cần kiểm tra</param>
+        /// <returns>Số điện thoại tìm được hoặc null</returns>
         string CheckPhoneNumberExist(string phoneNumber);
     }
 }

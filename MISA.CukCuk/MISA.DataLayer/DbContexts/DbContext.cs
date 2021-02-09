@@ -65,7 +65,7 @@ namespace MISA.DataLayer.DbContexts
         /// <param name="sqlCommand">sql command (không truyền: lấy tất cả)</param>
         /// <param name="parameters">Đối tượng chứa thông tin tham số</param>
         /// <param name="commandType">Command type (default: text)</param>
-        /// <returns>Data</returns>
+        /// <returns>Collection object</returns>
         /// CreatedBy: DMCUONG (07/02/2021)
         public IEnumerable<TEntity> GetData(string sqlCommand = null, object parameters = null, CommandType commandType = CommandType.Text)
         {
