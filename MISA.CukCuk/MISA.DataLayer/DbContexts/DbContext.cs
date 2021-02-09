@@ -92,7 +92,7 @@ namespace MISA.DataLayer.DbContexts
             var properties = typeof(TEntity).GetProperties();
 
             // Duyệt từng property. Lấy tên và giá trị. Sau đó gán vào câu lệnh sql
-            var dynamicParameters = new DynamicParameters();
+            // var dynamicParameters = new DynamicParameters();
             foreach (var property in properties)
             {
                 var propName = property.Name;
@@ -106,14 +106,14 @@ namespace MISA.DataLayer.DbContexts
                 sqlPropName += $", {propName}";
                 sqlPropParam += $", @{propName}";
 
-                dynamicParameters.Add($"@{propName}", propValue);
+                // dynamicParameters.Add($"@{propName}", propValue);
             }
 
             sqlPropName = sqlPropName.Remove(0, 1);
             sqlPropParam = sqlPropParam.Remove(0, 1);
             var sqlCommand = $"INSERT INTO {typeof(TEntity).Name} ({sqlPropName}) VALUES ({sqlPropParam})";
 
-            var response = _dbConnection.Execute(sqlCommand, param: dynamicParameters, commandType: CommandType.Text);
+            var response = _dbConnection.Execute(sqlCommand, param: entity, commandType: CommandType.Text);
             return response;
         }
 

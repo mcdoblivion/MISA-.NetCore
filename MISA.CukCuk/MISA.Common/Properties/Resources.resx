@@ -120,13 +120,31 @@
   <data name="ErrorService_DuplicateCustomerCode" xml:space="preserve">
     <value>Mã khách hàng không được phép trùng, vui lòng kiểm tra lại.</value>
   </data>
+  <data name="ErrorService_DuplicateCustomerEmail" xml:space="preserve">
+    <value>Email khách hàng không được phép trùng, vui lòng kiểm tra lại.</value>
+  </data>
   <data name="ErrorService_DuplicateCustomerPhoneNumber" xml:space="preserve">
     <value>Số điện thoại khách hàng không được phép trùng, vui lòng kiểm tra lại.</value>
   </data>
   <data name="ErrorService_EmptyCustomerCode" xml:space="preserve">
     <value>Mã khách hàng không được để trống, vui lòng kiểm tra lại.</value>
   </data>
+  <data name="ErrorService_EmptyCustomerFullName" xml:space="preserve">
+    <value>Họ và tên khách hàng không thể bỏ trống, vui lòng kiểm tra lại.</value>
+  </data>
+  <data name="ErrorService_EmptyCustomerPhoneNumber" xml:space="preserve">
+    <value>Số điện thoại khách hàng không thể bỏ trống, vui lòng kiểm tra lại.</value>
+  </data>
   <data name="ErrorService_General" xml:space="preserve">
     <value>Có lỗi xảy ra, vui lòng liên hệ MISA.</value>
+  </data>
+  <data name="ErrorService_InvalidEmail" xml:space="preserve">
+    <value>Email không đúng định dạng, vui lòng kiểm tra lại.</value>
+  </data>
+  <data name="ErrorService_InvalidPhoneNumber" xml:space="preserve">
+    <value>Số điện thoại không đúng định dạng, vui lòng kiểm tra lại.</value>
+  </data>
+  <data name="Regex_Email" xml:space="preserve">
+    <value>[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?</value>
   </data>
 </root>

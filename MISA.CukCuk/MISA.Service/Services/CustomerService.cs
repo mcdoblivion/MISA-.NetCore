@@ -1,4 +1,5 @@
-﻿using MISA.Common.Models;
+﻿using System.Text.RegularExpressions;
+using MISA.Common.Models;
 using MISA.Common.Properties;
 using MISA.DataLayer;
 using MISA.DataLayer.DbContexts;
@@ -37,9 +38,24 @@ namespace MISA.Service.Services
 
             // Validate dữ liệu (xử lý nghiệp vụ):
             // 1. Validate bắt buộc nhập
+            // - Mã khách hàng
             if (string.IsNullOrEmpty(customer.CustomerCode))
             {
                 errorMsg.UserMsg.Add(Resources.ErrorService_EmptyCustomerCode);
+                isValid = false;
+            }
+
+            // - Họ và tên
+            if (string.IsNullOrEmpty(customer.FullName))
+            {
+                errorMsg.UserMsg.Add(Resources.ErrorService_EmptyCustomerFullName);
+                isValid = false;
+            }
+
+            // - Số điện thoại
+            if (string.IsNullOrEmpty(customer.PhoneNumber))
+            {
+                errorMsg.UserMsg.Add(Resources.ErrorService_EmptyCustomerPhoneNumber);
                 isValid = false;
             }
 
@@ -53,14 +69,29 @@ namespace MISA.Service.Services
             }
 
             // - Kiểm tra trong database tồn tại số điện thoại chưa
-            var phoneNumberExist = _dbContext.CheckPhoneNumberExist(customer.PhoneNumber);
+            var phoneNumberExist = _dbContext.CheckCustomerPhoneNumberExist(customer.PhoneNumber);
             if (phoneNumberExist != null)
             {
                 errorMsg.UserMsg.Add(Resources.ErrorService_DuplicateCustomerPhoneNumber);
                 isValid = false;
             }
 
-            // 3. Validate tiếp
+            // - Kiểm tra trong database tồn tại email chưa
+            var emailExist = _dbContext.CheckCustomerEmailExist(email: customer.Email);
+            if (emailExist != null)
+            {
+                errorMsg.UserMsg.Add(Resources.ErrorService_DuplicateCustomerEmail);
+                isValid = false;
+            }
+
+            // 3. Validate email, số điện thoại đúng định dạng chưa
+            // - Kiểm tra định dạng email
+            var isEmailValid = Regex.IsMatch(customer.Email, Resources.Regex_Email, RegexOptions.IgnoreCase);
+            if (!isEmailValid)
+            {
+                errorMsg.UserMsg.Add(Resources.ErrorService_InvalidEmail);
+                isValid = false;
+            }
 
             return isValid;
         }

@@ -19,6 +19,13 @@ namespace MISA.DataLayer.Interfaces
         /// </summary>
         /// <param name="phoneNumber">Số điện thoại cần kiểm tra</param>
         /// <returns>Số điện thoại tìm được hoặc null</returns>
-        string CheckPhoneNumberExist(string phoneNumber);
+        string CheckCustomerPhoneNumberExist(string phoneNumber);
+
+        /// <summary>
+        /// Kiểm tra email khách hàng tồn tại chưa
+        /// </summary>
+        /// <param name="email">Email cần kiểm tra</param>
+        /// <returns>Email tìm được hoặc null</returns>
+        string CheckCustomerEmailExist(string email);
     }
 }

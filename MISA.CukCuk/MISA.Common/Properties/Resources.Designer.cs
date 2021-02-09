@@ -70,6 +70,15 @@ namespace MISA.Common.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email khách hàng không được phép trùng, vui lòng kiểm tra lại..
+        /// </summary>
+        public static string ErrorService_DuplicateCustomerEmail {
+            get {
+                return ResourceManager.GetString("ErrorService_DuplicateCustomerEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Số điện thoại khách hàng không được phép trùng, vui lòng kiểm tra lại..
         /// </summary>
         public static string ErrorService_DuplicateCustomerPhoneNumber {
@@ -88,11 +97,56 @@ namespace MISA.Common.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Họ và tên khách hàng không thể bỏ trống, vui lòng kiểm tra lại..
+        /// </summary>
+        public static string ErrorService_EmptyCustomerFullName {
+            get {
+                return ResourceManager.GetString("ErrorService_EmptyCustomerFullName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Số điện thoại khách hàng không thể bỏ trống, vui lòng kiểm tra lại..
+        /// </summary>
+        public static string ErrorService_EmptyCustomerPhoneNumber {
+            get {
+                return ResourceManager.GetString("ErrorService_EmptyCustomerPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Có lỗi xảy ra, vui lòng liên hệ MISA..
         /// </summary>
         public static string ErrorService_General {
             get {
                 return ResourceManager.GetString("ErrorService_General", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email không đúng định dạng, vui lòng kiểm tra lại..
+        /// </summary>
+        public static string ErrorService_InvalidEmail {
+            get {
+                return ResourceManager.GetString("ErrorService_InvalidEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Số điện thoại không đúng định dạng, vui lòng kiểm tra lại..
+        /// </summary>
+        public static string ErrorService_InvalidPhoneNumber {
+            get {
+                return ResourceManager.GetString("ErrorService_InvalidPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [a-z0-9!#$%&amp;&apos;*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;&apos;*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.
+        /// </summary>
+        public static string Regex_Email {
+            get {
+                return ResourceManager.GetString("Regex_Email", resourceCulture);
             }
         }
     }

@@ -28,11 +28,16 @@ namespace MISA.DataLayer.DbContexts
         /// <param name="phoneNumber">Số điện thoại cần kiểm tra</param>
         /// <returns>Số điện thoại tìm được hoặc null</returns>
         /// CreatedBy: DMCUONG (06/02/2021)
-        public string CheckPhoneNumberExist(string phoneNumber)
+        public string CheckCustomerPhoneNumberExist(string phoneNumber)
         {
             var sql = $"SELECT PhoneNumber FROM Customer AS C WHERE C.PhoneNumber = '{phoneNumber}'";
             var customerCodeInDb = _dbConnection.Query<string>(sql).FirstOrDefault();
             return customerCodeInDb;
+        }
+
+        public string CheckCustomerEmailExist(string email)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion Method
