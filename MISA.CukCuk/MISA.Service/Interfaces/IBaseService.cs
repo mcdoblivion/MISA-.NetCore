@@ -13,7 +13,7 @@ namespace MISA.Service.Interfaces
         /// Lấy tất cả dữ liệu
         /// </summary>
         /// <returns>ServiceResult</returns>
-        ServiceResult GetData();
+        ServiceResult Get();
 
         /// <summary>
         /// Thêm 1 bản ghi

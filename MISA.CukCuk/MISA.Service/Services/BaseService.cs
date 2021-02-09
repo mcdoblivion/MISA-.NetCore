@@ -1,4 +1,5 @@
 ﻿using MISA.Common.Models;
+using MISA.Common.Properties;
 using MISA.DataLayer;
 using MISA.DataLayer.DbContexts;
 using MISA.DataLayer.Interfaces;
@@ -34,11 +35,11 @@ namespace MISA.Service.Services
         /// Lấy tất cả dữ liệu
         /// </summary>
         /// <returns>ServiceResult</returns>
-        public virtual ServiceResult GetData()
+        public virtual ServiceResult Get()
         {
             var serviceResult = new ServiceResult()
             {
-                Data = _dbContext.GetData()
+                Data = _dbContext.GetObject()
             };
 
             return serviceResult;
@@ -106,8 +107,18 @@ namespace MISA.Service.Services
         {
             var serviceResult = new ServiceResult();
             var errorMsg = new ErrorMsg();
-            var response = _dbContext.DeleteObject(id);
-            serviceResult.Data = response;
+            var isExist = IsDataExist(id, errorMsg);
+
+            if (isExist)
+            {
+                var response = _dbContext.DeleteObject(id);
+                serviceResult.Success = true;
+                serviceResult.Data = response;
+                return serviceResult;
+            }
+
+            serviceResult.Data = errorMsg;
+            serviceResult.Success = false;
             return serviceResult;
         }
 
@@ -131,6 +142,21 @@ namespace MISA.Service.Services
         protected virtual bool IsUpdateDataValid(TEntity entity, ErrorMsg errorMsg = null)
         {
             return true;
+        }
+
+        /// <summary>
+        /// Kiểm tra dữ liệu có tồn tại trong database không
+        /// </summary>
+        /// <param name="id">id của entity</param>
+        /// <param name="errorMsg">Thông báo lỗi</param>
+        /// <returns>true - tồn tại, false - không tồn tại</returns>
+        protected virtual bool IsDataExist(string id, ErrorMsg errorMsg = null)
+        {
+            var idInDb = _dbContext.CheckEntityIdExist(id);
+            if (errorMsg == null) errorMsg = new ErrorMsg();
+            if (idInDb != null) return true;
+            errorMsg.UserMsg.Add(Resources.ErrorService_IdNotExist);
+            return false;
         }
 
         #endregion Method

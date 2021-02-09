@@ -37,7 +37,7 @@ namespace MISA.CukCuk.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var serviceResult = _baseService.GetData();
+            var serviceResult = _baseService.Get();
             var entities = serviceResult.Data as List<TEntity>;
 
             return StatusCode(entities.Count == 0 ? 204 : 200, entities);
@@ -87,7 +87,7 @@ namespace MISA.CukCuk.Api.Controllers
         {
             var response = _baseService.Delete(id);
             return StatusCode(!response.Success
-                ? 400
+                ? 404
                 : 200, response.Data);
         }
 

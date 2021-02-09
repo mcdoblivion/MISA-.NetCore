@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Dapper;
 using MISA.DataLayer.Interfaces;
 using MySqlConnector;
@@ -67,7 +68,7 @@ namespace MISA.DataLayer.DbContexts
         /// <param name="commandType">Command type (default: text)</param>
         /// <returns>Collection object</returns>
         /// CreatedBy: DMCUONG (07/02/2021)
-        public IEnumerable<TEntity> GetData(string sqlCommand = null, object parameters = null, CommandType commandType = CommandType.Text)
+        public IEnumerable<TEntity> GetObject(string sqlCommand = null, object parameters = null, CommandType commandType = CommandType.Text)
         {
             // Không truyền sqlCommand => lấy tất cả dữ liệu
             if (sqlCommand == null) sqlCommand = $"SELECT * FROM {typeof(TEntity).Name}";
@@ -133,7 +134,24 @@ namespace MISA.DataLayer.DbContexts
         /// <returns>Số object xoá thành công</returns>
         public int DeleteObject(string id)
         {
-            return 0;
+            var sql = $"DELETE FROM {typeof(TEntity).Name} WHERE {typeof(TEntity).Name}Id = '{id}'";
+            var response = _dbConnection.Execute(sql, commandType: CommandType.Text);
+
+            return response;
+        }
+
+        /// <summary>
+        /// Kiểm tra id đã tồn tại trong database chưa
+        /// </summary>
+        /// <param name="id">id cần kiểm tra</param>
+        /// <returns>id tìm được hoặc null</returns>
+        public string CheckEntityIdExist(string id)
+        {
+            var className = typeof(TEntity).Name;
+            var sql =
+                $"SELECT {className}Id FROM {className} AS T WHERE T.{className}Id = '{id}'";
+            var entityIdInDb = _dbConnection.Query<Guid>(sql).FirstOrDefault();
+            return entityIdInDb.Equals(Guid.Empty) ? null : entityIdInDb.ToString();
         }
 
         #endregion METHOD

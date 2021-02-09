@@ -44,7 +44,7 @@ namespace MISA.DataLayer.DbContexts
         /// <param name="commandType">Command type (default: text)</param>
         /// <returns>Data</returns>
         /// CreatedBy: DMCUONG (08/02/2021)
-        public IEnumerable<TEntity> GetData(string sqlCommand = null, object parameters = null, CommandType commandType = CommandType.Text)
+        public IEnumerable<TEntity> GetObject(string sqlCommand = null, object parameters = null, CommandType commandType = CommandType.Text)
         {
             return new List<TEntity>();
         }
@@ -77,6 +77,11 @@ namespace MISA.DataLayer.DbContexts
         public int DeleteObject(string id)
         {
             return 0;
+        }
+
+        public string CheckEntityIdExist(string id)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion METHOD

@@ -138,6 +138,9 @@
   <data name="ErrorService_General" xml:space="preserve">
     <value>Có lỗi xảy ra, vui lòng liên hệ MISA.</value>
   </data>
+  <data name="ErrorService_IdNotExist" xml:space="preserve">
+    <value>Id không tồn tại.</value>
+  </data>
   <data name="ErrorService_InvalidEmail" xml:space="preserve">
     <value>Email không đúng định dạng, vui lòng kiểm tra lại.</value>
   </data>

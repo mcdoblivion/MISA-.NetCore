@@ -124,6 +124,15 @@ namespace MISA.Common.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Id không tồn tại..
+        /// </summary>
+        public static string ErrorService_IdNotExist {
+            get {
+                return ResourceManager.GetString("ErrorService_IdNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email không đúng định dạng, vui lòng kiểm tra lại..
         /// </summary>
         public static string ErrorService_InvalidEmail {

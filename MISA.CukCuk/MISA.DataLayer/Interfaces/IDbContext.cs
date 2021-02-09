@@ -20,7 +20,7 @@ namespace MISA.DataLayer.Interfaces
         /// <param name="parameters">Đối tượng chứa thông tin tham số</param>
         /// <param name="commandType">Command type (default: text)</param>
         /// <returns>Collection object</returns>
-        IEnumerable<TEntity> GetData(string sqlCommand = null, object parameters = null,
+        IEnumerable<TEntity> GetObject(string sqlCommand = null, object parameters = null,
             CommandType commandType = CommandType.Text);
 
         /// <summary>
@@ -42,5 +42,12 @@ namespace MISA.DataLayer.Interfaces
         /// </summary>
         /// <returns>Số object xoá thành công</returns>
         int DeleteObject(string id);
+
+        /// <summary>
+        /// Kiểm tra id đã tồn tại trong database chưa
+        /// </summary>
+        /// <param name="id">id cần kiểm tra</param>
+        /// <returns>id tìm được hoặc null</returns>
+        string CheckEntityIdExist(string id);
     }
 }
