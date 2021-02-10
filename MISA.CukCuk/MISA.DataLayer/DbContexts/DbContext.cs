@@ -17,10 +17,10 @@ namespace MISA.DataLayer.DbContexts
         #region DECLARE
 
         private const string _connectionString =
-            "Host = 103.124.92.43;" +
+            "Host = 47.241.69.179;" +
             "Port = 3306;" +
             "Database = DMCuong_MF740_CukCuk;" +
-            "UserId = nvmanh;" +
+            "UserId = dev;" +
             "password = 12345678;";
 
         protected readonly IDbConnection _dbConnection;
